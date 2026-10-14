@@ -1,0 +1,24 @@
+{
+  "name": "claude-code-timesheet-mcp",
+  "version": "1.0.0",
+  "description": "MCP server exposing Claude Code session activity for time tracking",
+  "scripts": {
+    "start": "trap 'kill 0' EXIT; npm run server & npm run tunnel",
+    "tunnel": "set -a && . ./.env && ngrok http ${PORT:-8787} --url=$NGROK_URL --log=stdout --log-level=warn",
+    "server": "node --env-file-if-exists=.env server.js"
+  },
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.1",
+    "express": "^5.3.0",
+    "zod": "^4.6.7"
+  },
+  "engines": {
+    "node": ">=22.9"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chuvikovd/claude-code-timesheet-mcp.git"
+  }
+}
